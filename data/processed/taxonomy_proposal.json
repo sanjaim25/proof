@@ -1,0 +1,491 @@
+{
+  "version": "0.1",
+  "status": "human_review_required",
+  "intents": [
+    {
+      "intent_id": "delivery_delay",
+      "name": "Delivery Delay",
+      "description": "Customer says an expected delivery is late.",
+      "in_scope": [
+        "Customer says an expected delivery is late.",
+        "Customer says promised delivery date has passed."
+      ],
+      "out_of_scope": [
+        "Customer only asks where the package is and the delivery date has not passed.",
+        "Customer says tracking says 'delivered' but they did not receive it."
+      ],
+      "representative_examples": [
+        "@AmazonHelp He said the latest they would arrive today and it never showed up. So I was just on the  phone to CS and the lady said if I wanted to",
+        "Super aggravating knowing that since my @115821 orders from yesterday were shipped via AMZL US, they are guaranteed to be late.",
+        "@AmazonHelp Here are the last several orders. Granted some were over weekends so they look \"late\" and a couple were early, but look at how many have not arrived in time. This is only a small fraction of the 44 orders I have made in the last 6 months. https://t.co/BDBSGgmupb",
+        "Thanks @115821 @amazonhelp for the delay in shipping. I'm a prime member for 2 day shipping, not 3-4 days. Ridiculous",
+        "@115850 As a Amazon prime customer there is no diffrence of Shoppers. Still waiting for shipment from week even @23295 Ship it sooner then you guys. #Amazon #Fail Order date\n\n21-Nov-2017\n\nOrder #\n\n171-0390550-6849137 https://t.co/qvmd7551YX",
+        "@AmazonHelp I subscribed from Singapore only..I have been watching content for 1 month...I see this issue today only..Moreover i don't see any support related info in the app..It sucks..Had to contact thru twitter",
+        "Gotta love @116090 — item was supposed to arrive by Nov. 3rd.... even paid extra for one day delivery. 5 days later still no item..... 😡",
+        "@AmazonHelp the 2nd, delay email came on the 3rd, tried to cancel as I needed the parts, now expected 4th, still not here, 3rd delayed order",
+        "@AmazonHelp Got Philippines and they have 0 information. They only submit forms internally 1 day later for login. This is Amazon's idea of support?",
+        "@AmazonHelp Oh. And it’s 17 days late as it is",
+        "@AmazonHelp I have an order where your portal says the package is delayed, but UPS says they have never received anything at all... so it's stuck somewhere in between. Would you be able to check on what's actually going on?",
+        "@AmazonHelp So this is the third day that it hasn't arrived. Someone needs to sort this out ASAP as I feel I a being lied to and passed from pillar to post.",
+        "@AmazonHelp hi how long does a refund to bank take to process? I was told 2-3 weeks and 24-48 hours for gift card why’s it so delayed?",
+        "@AmazonHelp my prime order is late and has been marked as “out for delivery” for over 48 hours?",
+        "@AmazonHelp Yes I said that the delivery this week was absolutely terrible considering it was already late with no sufficient reason."
+      ],
+      "false_positive_examples": [
+        "@115830 Still waiting for a parcel , and the postman been and gone so obv being delivered by Amazon , use Royal Mail it's quicker !!!!!!!",
+        "So @116090 shipped my latest order using #intelcom and yet again those crooks claim to have delivered - odd as I didn't get my order.",
+        "@115821 Ontrac delivered pkg @ 12:41am Tue. Woke up whole household. Don’t you think it’s a little late and unsafe for the delivery person?",
+        "@93524 @115830 my Dropmix preorder has been delayed all the way to December, was supposed to be delivered today as of last night. Any idea why?",
+        "Yet again horrible experience of a non delivered package by @115821  you guys need to stick with @115817 for shipping.  5 separate orders all say “in route” delivery by 8pm. No show. Waste my time staying At work. Package shows up 3 days later.  I paid for 1 day shipping.  😡😡😡"
+      ],
+      "confusable_intents": [
+        "order_tracking",
+        "missing_delivery"
+      ],
+      "estimated_prevalence": 0.044,
+      "recommended_action": "KEEP",
+      "total_matches": 2200
+    },
+    {
+      "intent_id": "order_tracking",
+      "name": "Order Tracking",
+      "description": "Customer asks for tracking/status/location.",
+      "in_scope": [
+        "Customer asks for tracking link, status, or location of their order."
+      ],
+      "out_of_scope": [
+        "Delivery date has already passed (delay).",
+        "Package is marked delivered but not received (missing)."
+      ],
+      "representative_examples": [
+        "@AmazonHelp Really I'd just like an update on where it is now",
+        "@115850 Poor service~Prime Customer; Wrong number provided to track courier and Amazon rep on call says can't do anything abt it!!!!",
+        "@AmazonHelp Yup, figured as much - just worried when folks who pre-ordered after me were getting delivery updates for a limited item kind of thing",
+        "@AmazonHelp I want resolution not updates, i have 'n' number of updates on e-mail which guys dont have guts to put on twitter to avoid getting exposed",
+        "@293549 Hi there. If you need assistance with your delivery, please DM us your tracking # &amp; contact info. ^KS https://t.co/wKJHDXWGRQ",
+        "@AmazonHelp I should have posted it on Twitter earlier! You guys finally managed to get the delivery on track.  #HappyDiwali",
+        "@AmazonHelp I seen that update my question was why they gave false/ fake information to customers each and every time. Last call they didn't listen me",
+        "@AmazonHelp USPS says it left shipping partner facility in Kenosha WI at 3:23 A.M yesterday. That was the last update.",
+        "@AmazonHelp So after sitting in all day waiting the tracker has just changed!! Not impressed at all!! https://t.co/veyRM1c9sm",
+        "@AmazonHelp Nope. It says will deliver by 8pm. Except this is a business and you always deliver before 5. No dice this time. Tracking hasn’t been updated since 9am (out for delivery according to usps)",
+        "According to @115830 tracking these packages were handed to me. Real life says they were left on doorstep in rain. Fucking useless. https://t.co/1MHSHZ9OFO",
+        "@AmazonHelp How can i contact him? No update yet on my order.Hasnt moved since 2 days.i am tired of complaining 2 ur escalation team @115850 pls help.",
+        "@115850 Called CC thrice. No resolution. Need final status of delivery or refund.  Awaiting revert.",
+        "@AmazonHelp @115850 Few mins before received out for delivery.its update turely or Fakely??its 4th time this week.End of the close order status Fakely",
+        "@AmazonHelp Literally spent nearly an hour on the phone. Support was absolutely awful.  All I needed was a status update of my application."
+      ],
+      "false_positive_examples": [
+        "@AmazonHelp all the packages to Puerto Rico are being delayed due to “Preparing for shipment” status in Orders &gt;:(",
+        "@AmazonHelp I didn't get my product, but delivery status shows delivered. That was intentionally updated by delivery boy and he denied to deliver me, he replied that he is not in my area. I am prime member and helpless after 24 hours of this incident.",
+        "@AmazonHelp hi there, we placed on order on Amazon Prime to be delivered today but it hasn't arrived. Tracking says \"Parcel left the carrier facility\" since 10am and it's now 8pm",
+        "@AmazonHelp Initially it said delivered, but then when pulling it up through USPS tracking, it said forwarded (I recently moved, but had the package sent to my new address anyway - no fwd needed). I called USPS and they said they'd look into it. Now it says delivered again but nothing here.",
+        "@AmazonHelp How much time does it take to get an update? U guys have already delayed the paymemt by 8 months! Now its been a week and still nothing."
+      ],
+      "confusable_intents": [
+        "delivery_delay",
+        "missing_delivery"
+      ],
+      "estimated_prevalence": 0.03322,
+      "recommended_action": "KEEP",
+      "total_matches": 1661
+    },
+    {
+      "intent_id": "missing_delivery",
+      "name": "Missing Delivery",
+      "description": "Package is marked delivered but customer did not receive it.",
+      "in_scope": [
+        "Package is marked delivered but customer says they did not receive it.",
+        "Package appears stolen or lost."
+      ],
+      "out_of_scope": [
+        "Package is merely late but still in transit."
+      ],
+      "representative_examples": [
+        "@AmazonHelp Again false promise coustmer care. They told me I will get my product yesterday. Till now I didn't received",
+        "@AmazonHelp traking no #521656283512 shipment didn't received yet.",
+        "What the hell is this @115850 \nNever received this and App shows this is delivered\nWrost customer service https://t.co/a8o0Sjs0nu",
+        "@115850 - why are you delivering empty boxes?? Where is the content of the box that I paid for!! Your customer service takes for ever to resolve a problem. Not fair ! Not cool !",
+        "@115821 Hi! My husband and I registered for @95179 months ago, but never received that welcome box we've heard about.  Any tips? :)",
+        "@AmazonHelp didn't receive Prime two-day package in two days. Can you help? Thanks.",
+        "@115850 i ordered a product&amp; was to get 15% cashback on it within 72 hrs. But already 5 days hv passed didn't received a single penny",
+        "@AmazonHelp I was promised a refund from amazon prime within 3-5 business days but 10 business days has passed and I never received my refund.",
+        "@AmazonHelp A friend or neighbour finds it and I'm lucky they knock and give it to me because it could easily get stolen",
+        "Made a purchase in @115821 for my son bday. I told seller I got 1of 3 items ordered, he tells me to chase after Amazon for a refund. I can't get a refund if I don't ship it back, but I never received them in the first place. Hello? #BadExperience #worstAmazonSeller #Amazon https://t.co/LFKgEDp0Jn",
+        "@AmazonHelp I can now only chat but can't reach u people on call as it says \"Unable to find any pending order on ur number\" call back were arranged by ur representatives but i never received. I can only chat but not call ....",
+        "wildly unimpressed with @115821 this weekend - my 1-day delivery package containing derek’s sleep mask replacement was supposed to be delivered yesterday by 9 PM. it was marked DELIVERED at 10:44 PM, tho it most definitely wasn’t.",
+        "@AmazonHelp shall I share the order id\nI didn't received the cash back on my order",
+        "@AmazonHelp Yes I replied.... My stepdad wanted me to purchase something for him because he isn’t tech savvy and lives in Guinea (slow internet). You guys think I am using stolen info because his phone # on file doesn’t work.",
+        "@AmazonHelp One more...the status says delivered but I have never received it #403-5351279-2227531 - Your customer service is terrible"
+      ],
+      "false_positive_examples": [
+        "@AmazonHelp Is says delivered wednesday which it wasn't. Got another cd supposedly coming today... whats the point in pre-ordering them from you if they dont turn up on release date? A week lates no good.",
+        "@115850 I would like to complain against the delivery agent. He called me and I told him I’m home and 2 mins later it says delivered but no one came to my house https://t.co/hrpe3cs754",
+        "I am getting very upset and disappointed with @115821 prime delivery lately. First off, they never follow my directions and leave packages at my front door to get stolen. Second, they never arrive by the second day even though it says it’s going to. \n\nGet your shit together.",
+        "@AmazonHelp I never received my black friday order, and 4 conversations later with your customer service team it still isn't sorted! 2 days of my life i will never get back...",
+        "@AmazonHelp I’ve been having terrible luck with Customer Service today. Prime member, package was supposed to be delivered today. Now delayed until tomorrow. I will not be home tomorrow. I’m afraid it will be stolen. High dollar item too. Please help!"
+      ],
+      "confusable_intents": [
+        "delivery_delay",
+        "wrong_item"
+      ],
+      "estimated_prevalence": 0.00588,
+      "recommended_action": "KEEP",
+      "total_matches": 294
+    },
+    {
+      "intent_id": "wrong_item",
+      "name": "Wrong Item",
+      "description": "Customer received an item different from what they ordered.",
+      "in_scope": [
+        "Customer received the wrong item, size, or color."
+      ],
+      "out_of_scope": [
+        "Customer wants to return a correctly fulfilled item because they changed their mind."
+      ],
+      "representative_examples": [
+        "@AmazonHelp Doesn't help - i live in spain and returning items is a hassle and expensive - i was sent the incorrect item so would like the right item sent . Pls link me to the email assistance",
+        "@AmazonHelp And they you completely sent me the wrong item",
+        "@AmazonHelp It's 7 different items and I've already placed the order. Should I DM you the order number?",
+        "when you realize you order the wrong item on amazon and send a cancellation request than 2 days after you send it it ships and 5 minutes after it ships they say they can't refund it because they shipped it and the carrier cant find it... classy amazon classy 👌",
+        "@AmazonHelp Received the wrong item from an Amazon prime retailer. I was trying to re-order the item again so it arrives on time. It’s a birthday gift.",
+        "So @115821 @AmazonHelp sent out the wrong item and replaced it with the wrong item. I ordered jeep 5 lug spacers! They sent Toyota 6...twice https://t.co/JEHdSaXJXY",
+        "@AmazonHelp I’ve been a Prime customer for years &amp; had scores of items delivered to the same address. Never have I gotten the wrong items until now.",
+        "First bad experience with @115821 today. Important same-day order. Wrong item delivered. No good solution from substandard customer service.",
+        "@AmazonHelp yes, they want me to keep the can &amp; get refund, but wont send the ADVERTISED ITEM! I asked for advertised item &amp; now I have to pay to return wrong item. Phone number for seller does not work either!",
+        "@AmazonHelp A seller TWICE !! Both times wrong items and I called you on the phone about the fraud ! This was 13 days ago and UPS picked the item up",
+        "@AmazonHelp Can see you've replied to others who tweeted after me. I'm a v unhappy Prime customer. Onus on me to go out of my way to return item when wrong item was sent.",
+        "@115850 @AmazonHelp hi i hav 2 return the product, wich u sent wrong item. for return do i have to pay? if yes y i hav 2 pay for ur mistk",
+        "@AmazonHelp Problem persists after reinstall with different items also. Pls check for ref. I'm prime member still issues.  Tab to show more option causing the problem https://t.co/fK5YYrEuaD",
+        "@115821 @AmazonHelp shocking service received. Been sent the wrong item &amp; what’s the point of paying for Prime &amp; taking 4 days for delivery.",
+        "@AmazonHelp Yes I did this the first time I received the wrong item, they sent me a replacement but it was still the wrong item."
+      ],
+      "false_positive_examples": [
+        "@AmazonHelp (1) Had rep Michelle D. said I would receive gift card refund for wrong item and was broken in 1-2hrs, it's been over 2hrs."
+      ],
+      "confusable_intents": [
+        "return_request",
+        "missing_delivery"
+      ],
+      "estimated_prevalence": 0.00122,
+      "recommended_action": "MERGE (with damaged_item -> issue_with_received_item)",
+      "total_matches": 61
+    },
+    {
+      "intent_id": "damaged_item",
+      "name": "Damaged Item",
+      "description": "Customer received a damaged or defective item.",
+      "in_scope": [
+        "Item arrived broken, scratched, torn, or defective."
+      ],
+      "out_of_scope": [
+        "Item was stolen or missing entirely."
+      ],
+      "representative_examples": [
+        "@115850  Broken product received for order 408-7624111-6539547\n\nLooking for replacement, cu care was unable to register replace.\nDo check https://t.co/b9wltyKr7f",
+        "Received the damaged product with so mny prms #home_theater . Wanna change. Need #help. #HowTo  @115850 @123644",
+        "@AmazonHelp can u please help me coz ur bot is broken af https://t.co/RSytYC1Rwp",
+        "@AmazonHelp I spent $400 on 1 item. What they sent was broken. Now I'm responsible for paying shipping back to them?? No f*cking way!!",
+        "every time i order from a third-party from @115821 my shit gets lost, damaged, or fake delivered. sad.",
+        "@AmazonHelp @115850  look at amazon prime packaging. Cfl bulb is broken. Wasted time as well as money. Now waiting for pickup and refund. https://t.co/LZ0ygb2Vn1",
+        "@AmazonHelp I received the hardcover book that I ordered and it is completely ripped and smashed from one side. Second time this year",
+        "The embarrassing level of @115830 first item damaged not delivered, promised quick delivery of new 1 at no extra cost, then that doesn’t turn up and I get refunded, ask for an investigation, no reply 4 days after they said they would reply",
+        "Ok @AmazonHelp the vacuum cleaner arrived broken and missing a nozzle. Returns are NOT easy. Website and nhelpful. Won’t be buying large items from you again.",
+        "@AmazonHelp All I was told was that it can't be replaced, despite it being under warranty. They want me to send it back but I can't get another as it isn't made anymore. Basically, I can keep using a broken product or just spend more money on a replacement.",
+        "@115821 @305243 @19641 this is a fresh out of the kit knife bag? Stage tomorrow and this is what I️ get.Broken in the package? https://t.co/jGQPx7fMWh",
+        "I’ve been waiting 4 weeks for something to arrive in the mail and it just did.\n\nBroken. @115821",
+        "@115830 what should you do when an order comes completely smashed?! As in, all broken!",
+        "@AmazonHelp Two chats today, 9 agents, around 1.5 hours, to replace a defective kindle. What is worse is that I have chatted w/u 2x before, same topic",
+        "@AmazonHelp It was refused because I could not return damaged water in the mail.  All caps were crushed https://t.co/BcLPtUBoxs"
+      ],
+      "false_positive_examples": [
+        "@115821 is really losing my trust lately. Since all of the recent things I’ve ordered have been wrong and/or defective #veryunsatisfied.",
+        "@AmazonHelp I was charged a return shipping fee on an order that was a (Defective/Wrong Item Shipped TO ME) and was told over the phone that the fee would be refunded, how long would that take?",
+        "@AmazonHelp I recd wrong &amp; defective item last yr, made return request within 3days, the courier person never arrived. CC dragged me along, nw no reply.",
+        "@115821 @AmazonHelp not happy with current #service #prime a waste of time! Deliveries a joke, items damaged or incorrect!",
+        "@115850 Everytime I have tried shopping thru amazon, my experience is disastrous. Got wrong/damaged product. No return after lot of chase"
+      ],
+      "confusable_intents": [
+        "return_request"
+      ],
+      "estimated_prevalence": 0.01196,
+      "recommended_action": "MERGE (with wrong_item -> issue_with_received_item)",
+      "total_matches": 598
+    },
+    {
+      "intent_id": "return_request",
+      "name": "Return Request",
+      "description": "Customer wants to return an item.",
+      "in_scope": [
+        "Customer asks how to return an item or requests a return label."
+      ],
+      "out_of_scope": [
+        "Customer is only asking for a refund without returning (e.g. for a digital service)."
+      ],
+      "representative_examples": [
+        "@AmazonHelp Not acceptable for me to have the trouble of returning a clearly faulty item that shouldn’t have been sent out. The Packer should’ve seen it",
+        "@115850 i m unable to return the product on amazon.??\nthey should listen the customer first completely.",
+        "@AmazonHelp Yes the shoes were wet and smelled of mold.  I have already returned it.  Just thought this level of bad needed to be pointed out.",
+        ".@AmazonHelp You say you \"extended my extended\". I don't know what that means or how it helps me. Do I have to return the items that I did not get? Will my packages still get carried by AMZL? All I have is hassle and all you did was send me a nonsense sentence and that you care.",
+        "Again I am asking is there any pickup policy of Amazon. How much time does it take to pickup the mobile for return @115850 @amazonHelp https://t.co/vZGMadAm3T",
+        "@115850 Order# 408-6224820-9589169 has not reached us and received SMS Mail parcel returned. The address given is of factory which is all the time open. We faced similar issue in past too when parcels are not brought to address and returned??",
+        "@AmazonHelp So Finally,. Order is now returning back without making single effort for delivery. Amazon has proved thier character again.. Ashamed of you",
+        "@AmazonHelp  @115850  @115851  Very poor service in return, Please check this ORDER # 406-9540692-7046761 , requested return and replacement(ORDER # 408-0806392-9059553) 4 days ago- no one is coming for pickup. That's why replacement is not dispatching.",
+        "@AmazonHelp And for the other one I had asked for return. Its been more than a month I haven't heard from your side. It's frustrating.get in touch asap",
+        "@115821 Your customer service is atrocious. All I'm trying 2 do is find out about my return, shldnt take 18 minutes 4 an answer",
+        "so, the dog costume i ordered on @116090 arrived - it’s covered in dog hair - obviously used &amp; returned.\nwas $50! \ni’m so disappointed 😔",
+        "@AmazonHelp I tried calling but all it says is that I can't return my phone. Please schedule a call for me from the agent.",
+        "@AmazonHelp There is no return item within the packaging? Should there be???",
+        "@AmazonHelp Allegedly it's undeliverable and is being returned. I had the same issue with Amazon logistics in August, ended my prime membership due to it. Again my orders are not being delivered by your logistics company..",
+        "@115850 @AmazonHelp Disgusted with Amazon for sending a torn book which they tried to patch up with sticker. I an not taking the trouble to go through the return process at all . Let's see what you do as a reaction to such substandard service https://t.co/Xl1x7wSfby"
+      ],
+      "false_positive_examples": [
+        "@AmazonHelp Acc to policy nutritional items cannot be returned, but when you send a completely wrong product, what choice does a user have? Pls refund.",
+        "@115850  i wanted to return my order but no one came for receive order ,, ur service is so slow, plz quick send ur agent , and refund me https://t.co/XpCaIl6704",
+        "@115850 we have returned one faulty item and received a mail from Amazon that they have received the product. But,no refund or replacement",
+        "@AmazonHelp One-Day Delivery on Monday, it's Thursday, no items. Your courier has them, I asked for them to be returned to you, and a refund: silence.",
+        "@AmazonHelp The book was refunded but the late fee for not returning it on time wasn’t? How do I get that back"
+      ],
+      "confusable_intents": [
+        "refund_request",
+        "wrong_item",
+        "damaged_item"
+      ],
+      "estimated_prevalence": 0.01888,
+      "recommended_action": "KEEP",
+      "total_matches": 944
+    },
+    {
+      "intent_id": "refund_request",
+      "name": "Refund Request",
+      "description": "Customer is asking for a refund or money back.",
+      "in_scope": [
+        "Customer asks for a refund, credits, or questions a charge."
+      ],
+      "out_of_scope": [
+        "Customer is initiating a physical return (which implies a refund)."
+      ],
+      "representative_examples": [
+        "@AmazonHelp Have not signed up for Amazon Prime services in any shape or form. Please forward a contact no and person who can rectify and refund this.",
+        "@AmazonHelp i bought my wedding champagne through you, it was supposed to be delivered on Sunday, however i was informed that the driver crashed and therefore couldn't deliver it. I was then told i was being refunded for the amount and i had to make the order again",
+        "@AmazonHelp @115850 i have other owrk also in my life\nAmazon: We are here to take care of the issue.\nMe: i dont want to scold u..pls dnt come to a level that i start abusing u\nAmazon: You need not worry about it..\nMe: refund my money now..i dnt blv on u any more\nAmazon: I am sorry we cannot issue r",
+        "@AmazonHelp It was going into investigation as an unauthorised purchase and my account was being frozen, I’ve heard nothing since. Apparently if the third party were refusing to refund the money Amazon were going to look into giving me the money back. Thanks for the quick reply though.",
+        "@AmazonHelp Looks like everything is settled, just need to ship the item back. I'll have to look for the correct item again once I have my refund.",
+        "I have an email from @AmazonHelp stating I will receive a 100 dollar credit but now I am refused the credit!!!",
+        "@115821 Worst service ever i experienced till date all though i am prime member they have not refunded my money Order #\n171-4985790-4314722",
+        "@115850 pathetic customer service continues. Pack not picked up despite 10+calls &amp; no site of refund despite commitments.\nCC @115851",
+        "@115830 hi! I was charged extra 2.5% for some items I had in basket right before committing to payment... E.g £81.99 for a kindle vs advertised price of £79.99, same thing for electric blanket &amp; smart plugs. Can I get those back please ? https://t.co/AiqI5ltQtg",
+        "Hey @AmazonHelp if my package is lost, how will you refund me two days after you receive it? Also, why do I have to redo my order?",
+        "@AmazonHelp I was charged 79 pounds and I use .co.uk",
+        "@AmazonHelp This refund process is taking way to long  i have had to speak with multiple amazon reps this is kinda ridiculous.. i have never had a worse experience getting a refund on something in my life.",
+        "Terrible service from @115830 \n\nPlaced an order on a Black Friday deal. They with no warning cancel the order and issue a refund due to “account adjustment” and tell me if I still want it to reorder at the now higher price!",
+        "Yeah... @115821 just left a bitter taste in my mouth after I was charged twice for no reason.",
+        "@115850 I have added money to amazon pay but due to your server error it showed me bad request. Give me my money back in my bank account."
+      ],
+      "false_positive_examples": [
+        "@AmazonHelp I need your explanation why there is a delay in refunding my amount and also why the order was not delivered and returned to seller!",
+        "@AmazonHelp If it arrives tomorrow I’m going to return it and ask for a full refund",
+        "@AmazonHelp Take it back from my home, i won't parcel it😡. Send my return order or refund me",
+        "@AmazonHelp I already tell too much tweet that what's my issue. Now just tell me how I get back my refund and how I return you defective mobile to you. Nothing else talk.",
+        "@115821 dear concern I returned a damaged rcvd product last week still waiting for my refund. When call customer care they say within 24hrs you ll get the refund. Can some one please help https://t.co/0fA6lxKDwn"
+      ],
+      "confusable_intents": [
+        "return_request",
+        "cancel_order"
+      ],
+      "estimated_prevalence": 0.04354,
+      "recommended_action": "KEEP",
+      "total_matches": 2177
+    },
+    {
+      "intent_id": "cancel_order",
+      "name": "Cancel Order",
+      "description": "Customer wants to cancel an order.",
+      "in_scope": [
+        "Customer wants to cancel an order that hasn't shipped yet."
+      ],
+      "out_of_scope": [
+        "Customer wants to return an order that already arrived.",
+        "Customer wants to cancel Prime membership."
+      ],
+      "representative_examples": [
+        "@AmazonHelp @115850 @115851 So I'll repeat, I will NOT cancel my order. Why should I? You should rather focus on sourcing the product &amp; delivering it to customer asap instead of asking him to cancel.\nOr pay me the excess amount I'll have to pay if I buy from someone else &amp; if you want me to cancel from you.",
+        "@AmazonHelp I have  to get the Item today itself.  I am leaving from home tommorrow. Else I hav to cancel my order.",
+        "@AmazonHelp @115850 shields dubious, fake &amp; fraudulent sellers. Asks customer to cancel order without taking any action on seller #BoycottAmazon",
+        "@AmazonHelp  Order# 402-7551271-6222767\nPlease cancel my order as  it is placed mistakenly",
+        "@AmazonHelp I hv requested my order cancellation but customer care cancelled my all order \nreally pathetic\nU cannot cancel my orders without my permissi",
+        "@115850\nI accidentally requested for cancellation please don't cancel my order. Order #\n404-9441701-1229127",
+        "@AmazonHelp @115850 \nMy product is out for delivery from 48 hours\nIf tomorrow morning If I am not received my product I will cancel my order. 😣",
+        "@115821 hey! Trying to cancel order or change the address :). I’ve submitted online but 2 days... help?!",
+        "Pathetic from @115850\n@AmazonHelp i had to cancel my order just because i mistakenly order for a older address, worst order management",
+        "@AmazonHelp I invested quite a bit of time on that site today with zero results. Won't do it again. Will just cancel orders.",
+        "Hey @115850 why do you make it so hard to cancel orders? on purpose? And why isn't the customer care chat option more handy? Thumbs down!",
+        "@115850 I had ordered a Blackberry mobile screengaurd and want to cancel my order.  But i am unable to cancel it.  Pl find the screenshot of order details and cancel it. https://t.co/7NCsuKpZs5",
+        "@115821 @AmazonHelp @115850 with why did you cancel my order? U haven’t shippped it for ~3 months &amp; now cancelled it. You held my ~30k for 3 months &amp; nothing happened. FYI @115851",
+        "@AmazonHelp So you want me to cancel my order placed???",
+        "@115821 help order number I wish to cancel ORDER # D01-3970700-6742663. Inadvertently ordered.  \n\nThanx"
+      ],
+      "false_positive_examples": [
+        "@AmazonHelp Only options are track return cancel order. Doesn't help as I need to complain I didn't get delivery https://t.co/WooFqWFCBq",
+        "@AmazonHelp Have done that - for the 3rd time. It's passed useful now, I'm going to have to cancel my order and be satisfied that I'll never be able to get into my Amazon account, and not get a new camera until I return home in 3 months.",
+        "@AmazonHelp @115850  there is no CANCEL ORDER tab in my app. How can i return the item for the refund, when I have not at all received it?",
+        "@AmazonHelp I'm surprised you aren't able to provide a date after 36 hours of placing an order. My Amazon Prime doesn't seem great value. I'll just cancel my order and purchase it elsewhere, will look to cancel Prime as well as not getting value out of it if you can't providing a date.",
+        "@AmazonHelp I’m not waiting a week for a book, I pay for prime for a reason can you cancel my order please"
+      ],
+      "confusable_intents": [
+        "refund_request",
+        "return_request",
+        "account_prime"
+      ],
+      "estimated_prevalence": 0.0014,
+      "recommended_action": "KEEP",
+      "total_matches": 70
+    },
+    {
+      "intent_id": "account_prime",
+      "name": "Account & Prime",
+      "description": "Issues related to account access or Prime membership.",
+      "in_scope": [
+        "Login, password, account lockouts, Prime membership cancellation or benefits."
+      ],
+      "out_of_scope": [
+        "General website navigation issues not tied to account access."
+      ],
+      "representative_examples": [
+        "@AmazonHelp is this real? Logged into my account and it says I’m not a prime member which would be right? https://t.co/I3kmoNx1v6",
+        "@AmazonHelp Tried placing an order on amazon.fr and amazon.es for snes classic. Order cancelled and accounts closed. Multiple times.",
+        "@AmazonHelp my account is having major issues, changing my password has not helped",
+        "@AmazonHelp Yes but I need someone take the block off my account",
+        "I’ve been trying to unblock my @115821 account for 1+ week. Phone calls, emails.Still not get why my account was suddenly blocked! 1/2",
+        "@AmazonHelp if the comicxology account says there is no membership how come it’s trying to charge my account? It was turned off so I’m not sure why it’s still trying to take a subscription payment out",
+        "@AmazonHelp Cheater company amazon when r u going to unlock my amazon account.\n@122951 @118702 @4030 @115850",
+        "Anyone know how to buy gift cards (amazon) through PayPal without having a bank account linked..",
+        "@115821 Can anyone please help me....my card was compromised on you site..I cannot get back into my account to change card numbers...I cannot fax a number as I dont have a fax facility..",
+        "@AmazonHelp Yep. And I've tried logging in and out of the account. Nothing seems to be working",
+        "@115850 not delivered yet , what is the use of prime membership ?? https://t.co/rAXfwUckPz",
+        "@115821 when I have a prime account and therefore I’m paying for a service I expect my order to arrive on time. My order was supposed to be delivered two days ago but I’m still waiting. #Unbelievable",
+        "y’all r trash as fuck. i’m cancelling my prime membership. 2 day shipping my ass. I ordered my shit FRIDAY FUCKING MORNING and it still isnt here. never ordering shit from @115821 ever again",
+        "@AmazonHelp OMG really?\nDeleting my https://t.co/1zcbYxxV6j account today switching to  @4110 https://t.co/lhApi5TvIs",
+        "Clearly something very, very wrong is going on @115821 these days. Received a reply from support saying Amazon seller central doesn't have a seller account under the email I contacted them with. Except I used the @181888 form. What the hell!"
+      ],
+      "false_positive_examples": [
+        "@AmazonHelp There isn’t a status, you are asking for my payment details again, this will be the 7th time in 24 hours. Have spoke with bank, payment has left my account. I have tried to cancel order numerous times but there’s a technical fault"
+      ],
+      "confusable_intents": [
+        "cancel_order",
+        "technical_issue"
+      ],
+      "estimated_prevalence": 0.0385,
+      "recommended_action": "KEEP",
+      "total_matches": 1925
+    },
+    {
+      "intent_id": "technical_issue",
+      "name": "Technical Issue",
+      "description": "Issues with Amazon app, website, or digital devices.",
+      "in_scope": [
+        "App crashes, website errors, Kindle, Fire TV, or Alexa issues."
+      ],
+      "out_of_scope": [
+        "Account lockouts (Account & Prime)."
+      ],
+      "representative_examples": [
+        "@AmazonHelp hi, I've recently bought Kindle Unlimited. Aren't all books supposed to be available, cos some only give me an option to buy?",
+        "@115821 I'm disappointed. I paid for my package to be here today yet you haven't even shipped it. Very disappointing as a prime member.",
+        "@AmazonHelp That I paid overnight shipping for on SUNDAY. That still hasn’t shipped. Crappy, crappy customer service.",
+        "@AmazonHelp le numero  du service  après  vente est indisponible  \ncomment je les rappelles",
+        "Amazon PrimeとKindle Unlimitedは一つになったのかな？ Prime Reading？",
+        "@AmazonHelp Unknown sources is already on. I get to the \"Welcome to the Amazon Appstore\" and when clicking continue, it does nothing.",
+        "@115850 bought Motorola g5s volte option sign not coming and does not support calling through jio 4g I have to download the app to call.",
+        "@AmazonHelp Just received my Kindle Paperweight + it's saying that the Kindle Store is unavailable. Help!",
+        "@AmazonHelp That part is understandable, but this has been happening for 6 months.",
+        "Trying to buy an ebook @116090 as a gift - no solution on the website &amp; phone call went into a black hole.",
+        "Hey @115850 , thanks for the surprise . Got some random speakers after ordering Bose speakers . Really appreciate it https://t.co/MyGJ2dBAz9",
+        "@AmazonHelp I say: “Alexa play songs by blippi” she then says that she is setting up blippi on Pandora",
+        "@AmazonHelp Your delivery person cheats and is aggressive. Your helpline promises cancellation but I still get messages that delivery will happen tomorrow. What use is this Twitter handle of help",
+        "@AmazonHelp No nothing I asked but don't think the woman understood so was told someone would call me back but that hasn't happened thank you",
+        "@119625 @41046 I don't see this movie in the app"
+      ],
+      "false_positive_examples": [
+        "@AmazonHelp Unable to login. Changed password many times. It says wrong password.  Called amazon help from Friend's app. I was told that I will receive mail about my account issues in max 48 hours . 4 days passed since. account not active.",
+        "@AmazonHelp Wait... you guys have it. Just that the first run of the app, asked me to enter my email/password. Found the easier way the second time.",
+        "@AmazonHelp email received and I've read it. There is no solution 4 my problem. I just want my account unblocked. It is an error frm ur end.",
+        "@117634 Not sure what's going on with your Windows app, but I can't log on. Keeps saying email/password combination is wrong, it's not",
+        "@AmazonHelp hey, whats happening? still no word from you on my locked account? i'm surprised by this level of customer disregard after 2 weeks."
+      ],
+      "confusable_intents": [
+        "account_prime"
+      ],
+      "estimated_prevalence": 0.08606,
+      "recommended_action": "KEEP",
+      "total_matches": 4303
+    },
+    {
+      "intent_id": "gift_card_promotion",
+      "name": "Gift Card & Promotion",
+      "description": "Issues with gift cards, promotional codes, or discounts.",
+      "in_scope": [
+        "Claim codes not working, missing promotional discounts, gift card balances."
+      ],
+      "out_of_scope": [
+        "Regular refunds to credit cards."
+      ],
+      "representative_examples": [
+        "@AmazonHelp one of the customer reps answer: (I do understand but as we all have the same system and we all do follow the same protocol.\nSo system is not allowing us for the shipping upgrade as well as he discounts.)",
+        "@AmazonHelp being given the option to sign up to a discounted amazon prime but only if i put in a baby name? No context on this screen? https://t.co/jmSixlG66B",
+        "@AmazonHelp When it's mentioned an amount in lightning deal, on check out it mentions something else. when I go back , it shows again the discount",
+        "@AmazonHelp I already did but again received false assurance instead of the Gift card",
+        "@AmazonHelp On some gift cards the glue is too strong on the peel up strip and it peels up EVERY number on the claim code but one....",
+        "@115850  I added 2 gift cards, only one got added. This is the 2nd time. It's enough amazon...please review. This won't be tolerated now😡😡",
+        "When @115850 employees are on weed!!so much discount... https://t.co/jvsOGmTA6X",
+        "@120474 hi. Can amazon gift cards be used on amazon tickets?",
+        "@AmazonHelp Yes. It is an item listed at today's Deal of the Day. The game is available for PS4 and Xbox360, but the PC version is only available via 3rd party sellers with no discount.",
+        "@115850 can i transfer my gift card balance to another amazon user.",
+        "@AmazonHelp All the customer service offered was a small discount off the full price. That doesn’t solve anything! 6/6",
+        "@115850 Redmi4 order auto-cancelled bcz U failed 2 deliver it. And, now I've to re-order wid d non-discounted price. This makes sense?",
+        "@115830 hey guys, can I use a Amazon gift card on Tickets.Amazon?",
+        "@AmazonHelp @141806 Am I wrong in thinking I simply top up my acc via \"gift card\" section and use my @141806 One4Allas a Visa Debit card?",
+        "@8623 @171152 has cheated me and harassed as well.And tried to buy my loyalty with ₹100 gift card.@1755 @144769"
+      ],
+      "false_positive_examples": [],
+      "confusable_intents": [
+        "refund_request"
+      ],
+      "estimated_prevalence": 0.00378,
+      "recommended_action": "KEEP",
+      "total_matches": 189
+    },
+    {
+      "intent_id": "other_or_unclear",
+      "name": "Other / Unclear",
+      "description": "Messages that do not confidently fit into any strictly defined operational intent.",
+      "in_scope": [
+        "Ambiguous complaints, multi-intent requests lacking a primary focus, highly specific outliers."
+      ],
+      "out_of_scope": [
+        "Clear, actionable requests covered by specific intents."
+      ],
+      "representative_examples": [
+        "@AmazonHelp I found the package at my neighbor's house.  Never looking at the label: they opened it and said, \"I don't have a cat.\". need2 Geotag photo!",
+        "@672345 @AmazonHelp La han cagao pero bien!",
+        "@116316\nIch sehe gerade, dass eine meiner Bestellungen als \"Zugestellt\" markiert ist, die bei uns allerdings nicht angekommen ist. Irgendetwas ist da falsch gelaufen und ich finde leider nicht, wo ich das auf der Seite melden kann. Hilfe?!",
+        "@AmazonHelp Non plus 😢pas la du week-end. Si je peux par contre le mettre en relais colis à la place je peux attendre, sinon autant annuler",
+        "@AmazonHelp Not very good customer service. Also emailed the complaints email address i was given and not even received an automated response. Care to help?",
+        "@AmazonHelp This is the 5th time in 2 weeks since we moved in we've tried to do prime delivery and every time we've had to call and chase where our parcel has gone. Your drivers dont even try!",
+        "@AmazonHelp Executive asked for proofs n I submitted.still no reply from \"Giant corporation?\"",
+        "@AmazonHelp yes but the item was in-stock, so why with 1 and 2 day shipping options is it not arriving for a week is my question? that makes no sense?",
+        "@115850 Someone is trying to scam using your name. he tried to scam me but i was smart enough to catch him.@348 #amazon #fraud https://t.co/sJTf8WDJMb",
+        "@AmazonHelp No, and this is the 2nd time this month!",
+        "@133890 @AmazonHelp The premium rate 0870 number is a scam ... (thread) https://t.co/hDNTzwEWSt",
+        "@787540 @787478 @787539 @AmazonHelp Grave ils sont potes déjà 😂😘",
+        "wenn du einen hoddie auf @116316 bestellt hast und jetzt bis zum ersten pder zweiten dezember warten musst bis er kommt :(",
+        "Oficialmente me hice adicta de comprar en Internet. \n\n¡Gracias @116875 por su increíble servicio express de calidad! \n\nTip: compra todo en https://t.co/USq68EWCO4",
+        "Me acaba de cancelar @116928 un pedido de una silla que llevaba esperando 2 meses así de repente 🙃"
+      ],
+      "false_positive_examples": [],
+      "confusable_intents": [],
+      "estimated_prevalence": 0.71156,
+      "recommended_action": "KEEP",
+      "total_matches": 35578
+    }
+  ]
+}

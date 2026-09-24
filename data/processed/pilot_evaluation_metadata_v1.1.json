@@ -1,0 +1,1 @@
+{"model": "openai/gpt-oss-20b", "k": 2, "threshold": 0.55, "golden_set": "golden_set_v1.csv"}
