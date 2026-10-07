@@ -114,7 +114,8 @@ class SupportProofAgent:
                     "mean_sim": retrieval["mean_sim"]
                 },
                 "validation_failures": ["LLM Error"],
-                "api_error": str(e)
+                "api_error": str(e),
+                "original_draft": None
             }
             
         # (The LLM handles escalation policy internally based on confidence)

@@ -7,6 +7,9 @@ from src.agent.agent import SupportProofAgent
 from src.agent.schemas import AgentRequest
 
 def main():
+    from dotenv import load_dotenv
+    load_dotenv(override=True)
+    
     print("Initializing SupportProof Agent v0 (loading retrieval corpus)...")
     agent = SupportProofAgent(k=5, sim_threshold=0.55)
     agent.retriever.fit()
