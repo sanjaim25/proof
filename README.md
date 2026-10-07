@@ -266,7 +266,24 @@ python -m src.evaluation.run_agent --resume
 
 ---
 
-### Stages 10-11 · Analysis & Iteration
+### Stage 10 · LLM-as-Judge Evaluation
+
+Automated qualitative evaluation of agent replies using a second LLM call, assessing empathy, evidence correctness, and safety adherence.
+
+```bash
+python -m src.evaluation.llm_judge
+```
+
+| Output | Description |
+|:-------|:------------|
+| `data/processed/judge_results_v1.1.jsonl` | Per-example judge evaluations |
+| `reports/judge_results_v1.1.md` | Aggregate judge report |
+
+Supports checkpoint-based resume for handling API rate limits.
+
+---
+
+### Stage 11 · Analysis & Iteration
 
 Qualitative failure analysis and error categorization are documented in the reports directory:
 
@@ -308,7 +325,8 @@ supportproof/
 │   │   ├── baseline_majority.py        # Majority-class baseline
 │   │   ├── baseline_tfidf.py           # TF-IDF nearest-neighbor baseline
 │   │   ├── run_baselines.py            # Baseline evaluation runner
-│   │   └── run_agent.py                # Agent evaluation (--resume, --pilot)
+│   │   ├── run_agent.py                # Agent evaluation (--resume, --pilot)
+│   │   └── llm_judge.py                # LLM-as-judge qualitative evaluation
 │   └── intent/                         # Stage 4: Intent Taxonomy
 │       ├── discover.py                 # V1 unsupervised intent clustering
 │       ├── discover_v2.py              # V2 refined clustering
@@ -324,6 +342,8 @@ supportproof/
 │   ├── test_baselines.py
 │   ├── test_agent.py
 │   └── test_run_agent.py
+├── requirements.txt                    # Python dependencies
+├── LICENSE                             # MIT License
 ├── data/
 │   ├── raw/                            # Original TWCS dataset (not committed)
 │   │   └── twcs.csv
@@ -375,12 +395,7 @@ python -m venv .venv
 source .venv/bin/activate
 
 # Install dependencies
-pip install pydantic python-dotenv
-
-# For LLM providers (install as needed):
-pip install groq                    # Groq provider
-pip install openai                  # OpenAI provider
-pip install google-genai            # Gemini provider
+pip install -r requirements.txt
 ```
 
 ### Dataset
@@ -452,6 +467,9 @@ python -m src.agent.run_agent               # Interactive agent CLI
 python -m src.evaluation.run_agent          # Full golden-set evaluation
 python -m src.evaluation.run_agent --pilot  # Quick 20-example pilot
 python -m src.evaluation.run_agent --resume # Resume after rate limit
+
+# -- LLM Judge --
+python -m src.evaluation.llm_judge          # Stage 10: Qualitative evaluation
 ```
 
 ### Quick Demo (Agent Only)
@@ -604,6 +622,8 @@ All reports are auto-generated markdown files in `reports/`:
 | `golden_validation.md` | Stage 8c | Validation report for frozen set |
 | `baseline_results.md` | Stage 9 | Majority + TF-IDF baseline metrics |
 | `agent_results_v0.md` | Stage 9 | Agent v0 evaluation results |
+| `agent_results_v1.1.md` | Stage 9 | Agent v1.1 evaluation results |
+| `judge_results_v1.1.md` | Stage 10 | LLM-as-judge qualitative evaluation |
 | `agent_v0_error_analysis.md` | Stage 11 | Error categorization |
 | `pilot_results_v1.1.md` | Pilot | Quick pilot evaluation results |
 

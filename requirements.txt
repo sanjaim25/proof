@@ -1,0 +1,11 @@
+# ── Core Dependencies ──────────────────────────────────────────────────────
+pydantic>=2.0
+python-dotenv>=1.0
+
+# ── LLM Providers (install the one you need) ──────────────────────────────
+groq>=0.4                   # Groq provider (current evaluation default)
+openai>=1.0                 # OpenAI provider
+google-genai>=1.0           # Gemini provider
+
+# ── Testing ───────────────────────────────────────────────────────────────
+pytest>=7.0
