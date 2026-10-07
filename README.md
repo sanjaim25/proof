@@ -302,7 +302,10 @@ Qualitative failure analysis and error categorization are documented in the repo
 
 ```
 supportproof/
+├── frontend/                           # React + Vite Web UI
 ├── src/
+│   ├── api/                            # FastAPI Backend
+│   │   └── server.py
 │   ├── __init__.py
 │   ├── agent/                          # Stage 6-7: RAG Agent
 │   │   ├── agent.py                    # SupportProofAgent core with grounding validation
@@ -472,7 +475,22 @@ python -m src.evaluation.run_agent --resume # Resume after rate limit
 python -m src.evaluation.llm_judge          # Stage 10: Qualitative evaluation
 ```
 
-### Quick Demo (Agent Only)
+### Run the Web Application (Full Stack)
+
+```bash
+# Terminal 1: Start the FastAPI Backend
+python -m uvicorn src.api.server:app --reload --host 127.0.0.1 --port 8000
+
+# Terminal 2: Start the React Frontend
+cd frontend
+npm run dev
+```
+
+Then open `http://localhost:5173/` in your browser to chat with the agent.
+
+---
+
+### Quick Demo (Terminal CLI Only)
 
 ```bash
 cp .env.example .env

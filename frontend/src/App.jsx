@@ -22,32 +22,28 @@ export default function App() {
     scrollToBottom();
   }, [messages, isTyping]);
 
-  // Mock service to simulate the Python backend agent
-  const mockAgentResponse = async (userMessage) => {
-    // Determine mock behavior based on keywords
-    let reply = 'Could you please provide more details?';
-    let escalate = false;
-    let escalateReason = '';
-
-    const lowerMsg = userMessage.toLowerCase();
-    
-    if (lowerMsg.includes('refund') || lowerMsg.includes('damaged') || lowerMsg.includes('missing')) {
-      reply = "I'm sorry you're experiencing issues. Please provide your order number so I can investigate and arrange a refund.";
-      escalate = true;
-      escalateReason = "Requires human investigation and refund processing.";
-    } else if (lowerMsg.includes('http') || lowerMsg.includes('link')) {
-      reply = "Please wait while I connect you to a human agent to resolve this securely.";
-      escalate = true;
-      escalateReason = "Grounding Validation Failure: URLs are prohibited in AI responses.";
-    } else if (lowerMsg.includes('hello') || lowerMsg.includes('hi')) {
-      reply = "Hi there! How can I help you with your Amazon order today?";
+  // Connect to the real Python backend API
+  const fetchAgentResponse = async (userMessage) => {
+    try {
+      const response = await fetch('http://localhost:8000/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: userMessage })
+      });
+      
+      if (!response.ok) {
+        throw new Error(`API error: ${response.status}`);
+      }
+      
+      return await response.json();
+    } catch (error) {
+      console.error("Failed to connect to backend:", error);
+      return {
+        reply: "Error: I cannot connect to the Python backend. Please make sure the FastAPI server is running on port 8000.",
+        escalate: true,
+        escalateReason: "Connection to Python backend failed."
+      };
     }
-
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve({ reply, escalate, escalateReason });
-      }, 1500 + Math.random() * 1000); // Simulate network/LLM delay (1.5s - 2.5s)
-    });
   };
 
   const handleSendMessage = async (e) => {
@@ -62,8 +58,8 @@ export default function App() {
     setMessages(prev => [...prev, newUserMsg]);
     setIsTyping(true);
 
-    // Call mock backend (Replace this with actual fetch to Python API later)
-    const agentData = await mockAgentResponse(userMsg);
+    // Call real Python API
+    const agentData = await fetchAgentResponse(userMsg);
     
     setIsTyping(false);
     setMessages(prev => [...prev, {
