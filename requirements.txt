@@ -2,6 +2,10 @@
 pydantic>=2.0
 python-dotenv>=1.0
 
+# ── API Server ─────────────────────────────────────────────────────────────
+fastapi>=0.100.0
+uvicorn>=0.20.0
+
 # ── LLM Providers (install the one you need) ──────────────────────────────
 groq>=0.4                   # Groq provider (current evaluation default)
 openai>=1.0                 # OpenAI provider
