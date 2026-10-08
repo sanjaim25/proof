@@ -8,6 +8,8 @@
 
 SupportProof is an end-to-end Machine Learning pipeline and Full-Stack web application that transforms raw Twitter customer-support conversations into a production-grade, **RAG-powered support agent** with strict deterministic safety guardrails.
 
+### 🌐 [Live Demo → https://suprof.vercel.app](https://suprof.vercel.app/)
+
 **👉 For a complete, in-depth technical explanation of the machine learning pipeline, algorithms, intent taxonomy, and safety guardrails, please read [overview.md](./overview.md).**
 
 ---
