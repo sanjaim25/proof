@@ -1,11 +1,12 @@
 import json
+import gzip
 from pathlib import Path
 from typing import Dict, List, Tuple
 
 from src.intent.discover import build_tfidf, cosine_similarity, tokenize
 
 WORKSPACE = Path(__file__).resolve().parents[2]
-IN_JSONL = WORKSPACE / "data" / "processed" / "amazonhelp_conversations.jsonl"
+IN_JSONL = WORKSPACE / "data" / "processed" / "dev_corpus.jsonl.gz"
 DEV_IDS = WORKSPACE / "data" / "processed" / "development_conversation_ids.txt"
 
 class Retriever:
@@ -25,7 +26,7 @@ class Retriever:
             
         docs_tokens = []
         
-        with open(IN_JSONL, "r", encoding="utf-8") as f:
+        with gzip.open(IN_JSONL, "rt", encoding="utf-8") as f:
             for line in f:
                 if not line.strip():
                     continue
