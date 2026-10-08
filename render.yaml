@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: supportproof-api
+    runtime: docker
+    plan: free
+    healthCheckPath: /
+    envVars:
+      - key: GROQ_API_KEY
+        sync: false
+      - key: LLM_PROVIDER
+        value: groq
+      - key: GROQ_MODEL
+        value: openai/gpt-oss-20b
+      - key: FRONTEND_URL
+        sync: false

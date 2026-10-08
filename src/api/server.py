@@ -29,6 +29,10 @@ agent = SupportProofAgent(k=5, sim_threshold=0.55)
 agent.retriever.fit()
 print("Agent ready.")
 
+@app.get("/")
+async def health():
+    return {"status": "ok", "service": "SupportProof API"}
+
 class ChatRequest(BaseModel):
     message: str
 
