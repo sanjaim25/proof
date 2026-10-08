@@ -14,9 +14,7 @@ class GeminiProvider(LLMProvider):
         
         api_key = os.environ.get("GEMINI_API_KEY")
         if not api_key:
-            print("ERROR: GEMINI_API_KEY environment variable is missing.", file=sys.stderr)
-            print("Please configure it in a .env file or export it directly.", file=sys.stderr)
-            sys.exit(1)
+            raise ValueError("GEMINI_API_KEY environment variable is missing. Please configure it in your environment.")
             
         self.model_name = model_name or os.environ.get("GEMINI_MODEL", "gemini-2.5-flash")
         
@@ -45,9 +43,7 @@ class OpenAIProvider(LLMProvider):
 
         api_key = os.environ.get("OPENAI_API_KEY")
         if not api_key:
-            print("ERROR: OPENAI_API_KEY environment variable is missing.", file=sys.stderr)
-            print("Please configure it in a .env file or export it directly.", file=sys.stderr)
-            sys.exit(1)
+            raise ValueError("OPENAI_API_KEY environment variable is missing. Please configure it in your environment.")
 
         self.model_name = model_name or os.environ.get("OPENAI_MODEL", "gpt-5.6-luna")
 
@@ -72,9 +68,7 @@ class GroqProvider(LLMProvider):
 
         api_key = os.environ.get("GROQ_API_KEY")
         if not api_key:
-            print("ERROR: GROQ_API_KEY environment variable is missing.", file=sys.stderr)
-            print("Please configure it in a .env file or export it directly.", file=sys.stderr)
-            sys.exit(1)
+            raise ValueError("GROQ_API_KEY environment variable is missing. Please configure it in your environment.")
 
         self.model_name = model_name or os.environ.get("GROQ_MODEL", "openai/gpt-oss-20b")
 

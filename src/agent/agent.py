@@ -22,7 +22,7 @@ _PROVIDERS = {
 
 class SupportProofAgent:
     def __init__(self, k: int = 5, sim_threshold: float = 0.0):
-        provider_name = os.environ.get("LLM_PROVIDER", "openai").lower()
+        provider_name = os.environ.get("LLM_PROVIDER", "groq").lower()
         provider_cls = _PROVIDERS.get(provider_name)
         if provider_cls is None:
             raise ValueError(
