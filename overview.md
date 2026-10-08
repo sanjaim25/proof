@@ -94,8 +94,16 @@ This project isn't just a Python script—it is packaged as a fully deployable e
 
 ### Backend: FastAPI & Python
 - **RESTful API:** We wrapped the Python agent logic in a REST API (`src/api/server.py`). 
-- **Dockerized:** The entire backend is containerized using a custom `Dockerfile` and `.dockerignore`. This ensures environment consistency and means it can be instantly deployed to cloud servers like AWS ECS, Google Cloud Run, or Render.
-- **Dynamic Configuration:** It utilizes environment variables (`.env`) for API keys and dynamic CORS origins to securely accept traffic from the frontend.
+- **Dockerized Deployment:** The entire backend is containerized using a custom `Dockerfile`. Docker solves a critical real-world problem: **"It works on my machine but not on the server."** By packaging the Python runtime, all pip dependencies, the compressed data corpus, and the application code into a single, reproducible container image, we guarantee that the exact same environment runs on every server — whether it's a developer's laptop, a Render instance, or an AWS EC2 machine.
+
+  **What the Dockerfile does, step by step:**
+  1. Starts from a lightweight `python:3.10-slim` base image (keeps the container small and fast).
+  2. Sets `PYTHONDONTWRITEBYTECODE=1` and `PYTHONUNBUFFERED=1` to prevent Python from writing `.pyc` cache files and to ensure all print statements appear in real-time in the server logs (critical for debugging production issues).
+  3. Copies `requirements.txt` first and runs `pip install` — this is a deliberate Docker optimization called **layer caching**. Since dependencies change rarely, Docker caches this layer and skips it on future builds, making rebuilds take seconds instead of minutes.
+  4. Copies the rest of the application code (excluding files listed in `.dockerignore` like `frontend/`, `data/raw/`, `.env`, and `__pycache__/`).
+  5. Exposes port 8000 and starts the Uvicorn ASGI server using a dynamic `$PORT` variable, which allows cloud platforms like Render and Heroku to inject their own port at runtime.
+
+- **Dynamic Configuration:** The server reads all sensitive values (API keys, frontend URLs) from environment variables at runtime, never from hardcoded strings. This follows the **12-Factor App** methodology, which is the industry standard for building production cloud applications.
 
 ### Frontend: React & Vite
 - **Modern UI/UX:** A responsive web application (`frontend/`) featuring a glassmorphism dark-mode UI built with React.
