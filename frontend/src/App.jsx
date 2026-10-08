@@ -25,7 +25,7 @@ export default function App() {
   // Connect to the real Python backend API
   const fetchAgentResponse = async (userMessage) => {
     try {
-      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+      const apiUrl = import.meta.env.VITE_API_URL || 'https://proof-api-5s5a.onrender.com';
       const response = await fetch(`${apiUrl}/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
