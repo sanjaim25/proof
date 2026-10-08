@@ -1,4 +1,4 @@
-# SupportProof: Complete Project Overview
+# SupportProof: Complete Project Overview & Pipeline Deep-Dive
 
 ## 1. The Problem: Why does this project exist?
 
@@ -23,43 +23,58 @@ When a new customer asks a question, the system finds how human agents solved th
 
 ---
 
-## 3. How it Works: The Architecture
+## 3. The Complete 11-Stage Pipeline (How it was built)
 
-The project is broken down into a backend AI pipeline and a modern frontend UI. Here is the step-by-step flow of what happens when a customer types a message:
+To build this from scratch, we didn't just write a chat script. We built a rigorous 11-stage Data Science and Machine Learning pipeline. Here is exactly what happens in each stage:
 
-### Step 1: Retrieval (Finding Evidence)
-Using **TF-IDF Vector Search**, the system scans thousands of past Amazon customer service threads. If a customer says *"my parcel is missing"*, the system retrieves the top 5 historical conversations where human agents successfully solved missing parcel complaints.
+### Phase A: Data Processing (Stages 1-3)
+*Goal: Turn messy, raw data into clean, structured conversations.*
 
-### Step 2: Generation (The LLM)
-The system connects to an LLM provider (like Groq, OpenAI, or Gemini). It sends the LLM a strict prompt: *"Here is the customer's problem. Here are 5 historical examples of how we solved this. Figure out the customer's intent, and draft a reply using ONLY the provided examples."*
+* **Stage 1: Explore & Inspect** (`src/data/inspect_dataset.py`)
+  We started with a massive 3-million row CSV of raw tweets from Kaggle. This stage analyzed the data size, columns, and overall structure to understand what we were working with.
+* **Stage 2: Brand Selection** (`src/data/analyze_brands.py`)
+  The dataset contained tweets from Apple, Uber, Spotify, etc. This stage analyzed which brand had the most complete, high-quality back-and-forth conversations. **@AmazonHelp** won because they have excellent, detailed support threads.
+* **Stage 3: Conversation Reconstruction** (`src/data/extract_brand.py`)
+  Twitter data is chaotic. A customer tweets, the brand replies, the customer replies again. This stage stitched those individual, disconnected tweets together into chronological "Threads" so the AI can read them like a normal chat log.
 
-### Step 3: Safety Guardrails (The "Proof")
-Before the drafted reply is ever shown to the customer, it goes through strict Python-based deterministic checks. 
-- **URL Check:** If the AI includes an `http://` link that wasn't in the historical evidence, the message is instantly blocked.
-- **Action Check:** If the AI promises a refund or replacement, the system checks if it is confident enough to do so.
-If a safety check fails, the system overrides the AI and **Escalates** the ticket to a human agent instead.
+### Phase B: Understanding the Customer (Stage 4)
+*Goal: Teach the AI what customers actually want.*
+
+* **Stage 4: Intent Taxonomy Discovery** (`src/intent/`)
+  We didn't want to manually guess what customers ask Amazon. Instead, we used Unsupervised Machine Learning (TF-IDF Clustering and LLM analysis) to group thousands of messages together automatically. Through 3 iterations (v1, v2, v3), the system automatically discovered **11 distinct categories** of problems (e.g., `missing_delivery`, `refund_request`, `technical_issue`). 
+
+### Phase C: Building the AI Agent (Stages 5-7)
+*Goal: Build the brain and the safety guardrails.*
+
+* **Stage 5: Data Splitting** (`src/evaluation/split_data.py`)
+  To properly test the AI, we split the data into a "Development Set" (for the AI to search through) and a "Golden Set" (a secret exam the AI has never seen before).
+* **Stage 6: The Retriever** (`src/agent/retriever.py`)
+  We built a search engine using **TF-IDF Vector Search**. When a user types a message, this engine instantly scans the Development Set and returns the Top 5 most mathematically similar historical conversations.
+* **Stage 7: The RAG Agent & Safety Rules** (`src/agent/agent.py`)
+  This is the core brain. It sends the customer message and the Top 5 historical examples to the LLM (Groq) to draft a reply. Crucially, it applies **Deterministic Safety Checks**:
+  - *No URLs:* If the AI outputs a link not found in the evidence, block it.
+  - *No Hallucinated Refunds:* If the AI promises a refund it shouldn't, block it.
+  If a rule is broken, the AI is overridden, and the ticket is escalated to a human.
+
+### Phase D: Rigorous Testing & Evaluation (Stages 8-11)
+*Goal: Mathematically prove the agent works and doesn't hallucinate.*
+
+* **Stage 8: The Golden Set** (`src/evaluation/build_golden.py`)
+  We randomly sampled 200 conversations and built a web UI to manually, humanly annotate what the "perfect" answer and intent should be for each one.
+* **Stage 9: Baselines & Agent Evaluation** (`src/evaluation/run_agent.py`)
+  We ran the AI against all 200 Golden questions to see how well it performed. It handles API rate limits by saving "checkpoints" so it never loses progress if the server crashes. We also compared it to "dumb" baselines (like guessing the most common intent every time) to prove the AI is actually smart.
+* **Stage 10: LLM-as-a-Judge** (`src/evaluation/llm_judge.py`)
+  Numbers (like F1-scores) don't tell the whole story for chat bots. We used a second, separate AI to read every single reply our agent generated, and graded it on a scale of 1-5 for Empathy, Correctness, and Safety.
+* **Stage 11: Error Analysis** (`reports/`)
+  We analyzed the failures to figure out *why* the agent made mistakes, documenting them in detailed Markdown reports to guide future improvements.
 
 ---
 
-## 4. The 11-Stage ML Pipeline
+## 4. The Full Stack Application (Deployment)
 
-To build this from scratch, the project repository (`src/`) contains 11 distinct data science and engineering stages:
+This project isn't just a Python script—it is packaged as a fully deployable enterprise application:
 
-1. **Data Processing (Stages 1-3):** Analyzed a 3-million-tweet CSV file, extracted Amazon's data, and stitched disconnected tweets into readable conversational threads.
-2. **Intent Discovery (Stage 4):** Used unsupervised machine learning to group thousands of messages into 11 distinct "Intents" (e.g., `delivery_delay`, `refund_request`).
-3. **Retrieval & Agent Core (Stages 5-7):** Built the search engine and the safety rules.
-4. **Rigorous Evaluation (Stages 8-11):** 
-   - Created a **Golden Set** of 200 human-labeled test questions.
-   - Built an **LLM Judge** that uses a second AI to grade the primary AI on Empathy, Correctness, and Safety.
-   - Handled API Rate Limits automatically by saving progress to checkpoints.
-
----
-
-## 5. The Full Stack Application
-
-This project isn't just a Python script—it's a fully deployed application:
-
-- **The Backend:** A **FastAPI** server (`src/api/server.py`) that wraps the Python agent logic and exposes it as a REST API endpoint (`http://localhost:8000/chat`).
-- **The Frontend:** A **React + Vite** web application (`frontend/`) featuring a modern, glassmorphism dark-mode UI. It connects to the API and renders the chat interface, typing indicators, and Escalation Warning badges in real-time.
+- **The Backend (FastAPI):** We wrapped the Python agent logic in a REST API (`src/api/server.py`). It is containerized using a `Dockerfile`, meaning it can be instantly deployed to cloud servers like AWS, Google Cloud, or Render.
+- **The Frontend (React + Vite):** A modern, responsive web application (`frontend/`) featuring a glassmorphism dark-mode UI. It connects to the API and renders the chat interface, typing indicators, and Escalation Warning badges in real-time.
 
 **In summary:** SupportProof is a production-ready, RAG-based AI support agent with strict anti-hallucination guardrails, a full evaluation suite, and a modern web interface.
