@@ -4,16 +4,20 @@ from pydantic import BaseModel
 from src.agent.agent import SupportProofAgent
 from src.agent.schemas import AgentRequest
 from dotenv import load_dotenv
+import os
 
 # Load API keys from .env
 load_dotenv(override=True)
 
 app = FastAPI(title="SupportProof API")
 
-# Add CORS middleware to allow the React frontend (running on port 5173) to communicate with this backend
+# Allow dynamic production URL or default localhost
+FRONTEND_URL = os.getenv("FRONTEND_URL", "http://localhost:5173")
+
+# Add CORS middleware to allow the React frontend to communicate with this backend
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173", "http://127.0.0.1:5173"],
+    allow_origins=[FRONTEND_URL, "http://localhost:5173", "http://127.0.0.1:5173"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
